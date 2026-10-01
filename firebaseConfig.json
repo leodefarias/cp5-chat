@@ -1,0 +1,10 @@
+{
+  "apiKey": "AIzaSyBmRze2fsqerNtqrUBoIcYmsN86DoHOtJU",
+  "authDomain": "cp5-chat.firebaseapp.com",
+  "databaseURL": "https://cp5-chat-default-rtdb.firebaseio.com",
+  "projectId": "cp5-chat",
+  "storageBucket": "cp5-chat.firebasestorage.app",
+  "messagingSenderId": "536776386125",
+  "appId": "1:536776386125:web:025eba7b99318b08ac1e04",
+  "measurementId": "G-E1WP9DHV3P"
+}

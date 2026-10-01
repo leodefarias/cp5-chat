@@ -1,0 +1,26 @@
+{
+  "rules": {
+    "conversationMeta": {
+      "$conversationId": {
+        ".read": "auth != null && data.child('members').child(auth.uid).val() === true",
+        ".write": "auth != null && ((!data.exists() && newData.child('members').child(auth.uid).val() === true && newData.child('ownerId').val() === auth.uid && newData.child('memberCount').isNumber() && newData.child('memberLimit').isNumber() && newData.child('memberCount').val() <= newData.child('memberLimit').val() && newData.child('memberLimit').val() >= 2 && ((newData.child('type').val() === 'direct' && newData.child('memberCount').val() === 2 && newData.child('memberLimit').val() === 2) || (newData.child('type').val() === 'group' && newData.child('memberCount').val() >= 2))) || (data.exists() && data.child('ownerId').val() === auth.uid && newData.child('ownerId').val() === data.child('ownerId').val() && newData.child('type').val() === data.child('type').val() && newData.child('memberCount').isNumber() && newData.child('memberLimit').isNumber() && newData.child('memberCount').val() <= newData.child('memberLimit').val() && newData.child('memberLimit').val() >= data.child('memberCount').val() && newData.child('members').child(auth.uid).val() === true))"
+      }
+    },
+    "conversationAccess": {
+      "$conversationId": {
+        ".read": "auth != null && data.child(auth.uid).val() === true",
+        "$uid": {
+          ".write": "auth != null && ((newData.val() === true && root.child('conversationMeta').child($conversationId).child('members').child(auth.uid).val() === true && root.child('conversationMeta').child($conversationId).child('members').child($uid).val() === true) || (newData.val() === null && (root.child('conversationMeta').child($conversationId).child('ownerId').val() === auth.uid || auth.uid === $uid)))"
+        }
+      }
+    },
+    "messages": {
+      "$conversationId": {
+        ".read": "auth != null && root.child('conversationAccess').child($conversationId).child(auth.uid).val() === true",
+        "$messageId": {
+          ".write": "auth != null && !data.exists() && root.child('conversationAccess').child($conversationId).child(auth.uid).val() === true && newData.child('senderId').val() === auth.uid && newData.child('conversationId').val() === $conversationId && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 2000 && (newData.child('conversationType').val() === 'direct' || newData.child('conversationType').val() === 'group') && newData.child('createdAt').isNumber() && (!newData.hasChild('mentionedUserIds') || newData.child('mentionedUserIds').hasChildren()) && (newData.child('target').child('type').val() === 'conversation' || (newData.child('target').child('type').val() === 'member' && newData.child('target').child('memberId').isString()))"
+        }
+      }
+    }
+  }
+}
