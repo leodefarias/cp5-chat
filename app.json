@@ -21,6 +21,7 @@
     },
     "android": {
       "package": "br.com.fiap.cp5chat",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#0B0B0D",
         "foregroundImage": "./assets/android-icon-foreground.png",

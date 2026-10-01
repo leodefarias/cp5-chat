@@ -57,7 +57,7 @@ O projeto é o [cp5-chat](https://console.firebase.google.com/project/cp5-chat/o
 npx firebase-tools deploy --only firestore:rules,database --project cp5-chat
 ```
 
-O `firebaseConfig.json` tem apenas a configuração do SDK cliente. Não coloque conta de serviço, chave privada nem senha nele. Enquanto os campos estiverem vazios, o login mostra o aviso para preenchê-los. As chaves do console não foram inventadas neste repositório.
+O `firebaseConfig.json` tem apenas a configuração do SDK cliente do projeto `cp5-chat`. Não coloque conta de serviço, chave privada nem senha nele.
 
 ## Fotos
 
@@ -129,9 +129,9 @@ O plano free do Render hiberna. Agende um ping externo em `GET /health` a cada p
 
 ### URL pública
 
-Substitua depois do deploy e coloque a mesma URL em `EXPO_PUBLIC_API_URL`:
+`https://cp5-chat-api.onrender.com`
 
-`https://SUA-API.onrender.com`
+Coloque a mesma URL em `EXPO_PUBLIC_API_URL` no `.env` local do aplicativo. Esse arquivo não entra no Git.
 
 ### Endpoints
 
@@ -142,8 +142,14 @@ Substitua depois do deploy e coloque a mesma URL em `EXPO_PUBLIC_API_URL`:
 Conferir a API:
 
 ```bash
-curl https://SUA-API.onrender.com/health
+curl https://cp5-chat-api.onrender.com/health
 ```
+
+O plano free do Render dorme após 15 minutos sem acesso. A primeira chamada depois disso pode levar cerca de um minuto. Para a API responder na correção, configure um ping externo a cada 10 minutos em `https://cp5-chat-api.onrender.com/health`, por exemplo no [cron-job.org](https://cron-job.org).
+
+Repositório do trabalho: https://github.com/leodefarias/cp5-chat
+
+O `firebaseConfig.json` é a configuração pública do SDK cliente, exigida pelo enunciado. A chave da conta de serviço não está nesse repositório. Se ele estiver privado, o professor precisa de acesso durante a correção.
 
 ## Política de notificações
 
@@ -186,11 +192,27 @@ cp5-chat/
 
 ## Prints
 
-Login e cadastro, capturados no Expo Web. As demais telas dependem do `firebaseConfig.json` preenchido. A evidência de push depende de aparelho físico e da API publicada; não há imagem simulada.
+As telas do aplicativo foram capturadas no Expo Web. A notificação foi recebida no celular, com development build.
 
 ![Login](docs/login.png)
 
 ![Cadastro](docs/register.png)
+
+![Conversas](docs/conversas.png)
+
+![Usuários](docs/usuarios.png)
+
+![Chat vazio](docs/chat-vazio.png)
+
+![Chat](docs/chat.png)
+
+![Perfil](docs/perfil.png)
+
+![Grupo](docs/grupo.png)
+
+![Integrantes](docs/integrantes.png)
+
+![Notificação recebida](docs/notificacao.jpeg)
 
 ## Testes
 
